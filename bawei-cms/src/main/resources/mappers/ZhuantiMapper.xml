@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liuaoji.cms.dao.ZhuantiMapper">
+	<!-- 列表展示 -->
+	<select id="getList" resultType="zhuanti">
+		select * from cms_zhuanti
+	</select>
+	<!-- 添加 -->	
+	<insert id="save" parameterType="zhuanti">
+		insert into cms_zhuanti(name)values(#{name})
+	</insert>
+	<!-- 删除 -->
+	<delete id="del" parameterType="int">
+		delete from cms_zhuanti where id=#{id}
+	</delete>
+	<!--修改 -->
+	<select id="selectById" parameterType="int" resultType="zhuanti">
+		select * from cms_zhuanti where id=#{id}
+	</select>
+	<update id="update" parameterType="zhuanti">
+		update cms_zhuanti set name=#{name} where id=#{id}
+	</update>
+	<!-- 查找专题下面文章的id -->
+	<select id="zhuantiListById" parameterType="int" resultType="int">
+		select article_id from cms_article_zhuanti where zhuanti_id=#{zhuant_id}
+	</select>
+	<!-- 文章列表 -->
+	<select id="articleList" resultType="article">
+		select * from cms_article
+	</select>
+	<!-- 先删除 -->
+	<delete id="delArticle" parameterType="int">
+		delete from cms_article_zhuanti where zhuanti_id=#{zhuanti_id}
+	</delete>
+	<!-- 添加 -->
+	<insert id="addArt" parameterType="map">
+		insert into cms_article_zhuanti (null,#{zhuanti_id},#{article_id})
+	</insert>
+</mapper>
