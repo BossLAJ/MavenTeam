@@ -76,3 +76,7 @@
 0:0:0:0:0:0:0:1 - - [19/Aug/2019:10:12:52 +0800] "GET /movie/list.do HTTP/1.1" 200 3394 http-bio-8082-exec-6 10
 0:0:0:0:0:0:0:1 - - [19/Aug/2019:10:12:57 +0800] "POST /movie/search.do HTTP/1.1" 302 - http-bio-8082-exec-7 8
 0:0:0:0:0:0:0:1 - - [19/Aug/2019:10:12:57 +0800] "GET /movie/list.do?list=52&list=72&list=82&list=92&list=102&list=112 HTTP/1.1" 200 3394 http-bio-8082-exec-9 7
+0:0:0:0:0:0:0:1 - - [19/Aug/2019:19:55:18 +0800] "GET /movie/list.do HTTP/1.1" 200 3394 http-bio-8082-exec-1 1033
+0:0:0:0:0:0:0:1 - - [19/Aug/2019:19:55:18 +0800] "GET /favicon.ico HTTP/1.1" 404 - http-bio-8082-exec-3 0
+0:0:0:0:0:0:0:1 - - [19/Aug/2019:19:55:33 +0800] "GET /movie/list.do HTTP/1.1" 200 3394 http-bio-8082-exec-5 9
+0:0:0:0:0:0:0:1 - - [19/Aug/2019:19:55:56 +0800] "GET /movie/list.do HTTP/1.1" 200 3394 http-bio-8082-exec-1 517
