@@ -27,7 +27,7 @@
 	<!-- 横幅 -->
 	<div class="container">
 		<div class="row">
-			<div class="col-xs-12 my_banner">
+			<div class="col-md-12 my_banner">
 			</div>
 		</div>
 	</div>
@@ -48,11 +48,9 @@
 						</div>
 					    <form action="/my/avatar/save" enctype="multipart/form-data" method="post" >
 					    	<p>上传头像：<input type="file" name="file"/></p>
-					    	
-					    	<p>
-					    		<button type="submit" class="btn btn-info btn-block">保存</button> 
-					    	</p>
-					    	
+						    	<p>
+						    		<button type="submit" class="btn btn-info btn-block">保存</button> 
+						    	</p>
 					    </form>
 				    	
 				  </div>

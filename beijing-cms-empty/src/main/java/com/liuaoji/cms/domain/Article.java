@@ -71,6 +71,7 @@ public class Article implements Serializable {
 	//原文链接
 	private String orglink;
 	
+	private Integer articletype;
 	//---------------------------------------------------------------------
 	
 	
@@ -78,6 +79,14 @@ public class Article implements Serializable {
 		super();
 	}
 	
+	public Integer getArticletype() {
+		return articletype;
+	}
+
+	public void setArticletype(Integer articletype) {
+		this.articletype = articletype;
+	}
+
 	public String getKeywords() {
 		return keywords;
 	}

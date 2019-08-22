@@ -42,6 +42,7 @@ public interface ArticleService {
 
 	//删除
 	public abstract void remove(Integer id);
+
 	
 
 }

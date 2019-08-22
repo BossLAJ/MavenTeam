@@ -30,7 +30,7 @@
 	<!-- 横幅 -->
 	<div class="container">
 		<div class="row">
-			<div class="col-xs-12 banner">
+			<div class="col-md-12 my_banner">
 			</div>
 		</div>
 	</div>
@@ -60,11 +60,43 @@
     				 </a>
 				</div>
 				<hr/>
-				<div class="content">
-					${blog.content}
-				</div>
+				<c:choose>
+					<c:when test="${blog.articletype == '1'}">
+						
+						<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+						  <ol class="carousel-indicators">
+						    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+						    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+						    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+						  </ol>
+						  <div class="carousel-inner">
+						  	<c:forEach items="${pictures}" var="slide" varStatus="idx">
+							    <div class="carousel-item ${idx.index==0 ? 'active' : ''}">
+							      <img class="d-block w-100" src="${slide.photo}" alt="${slide.desc}">
+							      <div class="carousel-caption d-none d-md-block">
+								    <h5><a href="#">${slide.desc}</a></h5>
+								  </div>
+							    </div>
+						  	</c:forEach>
+						  </div>
+						  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+						    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						    <span class="sr-only">Previous</span>
+						  </a>
+						  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+						    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+						    <span class="sr-only">Next</span>
+						  </a>
+						</div>
+						
+					</c:when>
+					<c:otherwise>
+						<div class="content">
+							${blog.content}
+						</div>
+					</c:otherwise>
+				</c:choose>
 				<div class="text-right">发布时间：<fmt:formatDate value="${blog.created}" pattern="yyyy-MM-dd HH:mm:ss"/></div>
-				
 				<hr/>
 				
 				<h4>最新评论</h4>

@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.alibaba.fastjson.JSONArray;
 import com.liuaoji.cms.core.Page;
 import com.liuaoji.cms.domain.Article;
 import com.liuaoji.cms.domain.Category;
 import com.liuaoji.cms.domain.Channel;
+import com.liuaoji.cms.domain.Picture;
 import com.liuaoji.cms.domain.Slide;
 import com.liuaoji.cms.service.ArticleService;
 import com.liuaoji.cms.service.SlideService;
@@ -98,6 +100,29 @@ public class HomeController {
 	public String article(Integer id ,Model model) {
 		articleService.increasehit(id);
 		Article article = articleService.selectByPrimaryKey(id);
+		if(article.getArticletype() == 1){
+			List<Picture> parseArray = JSONArray.parseArray(article.getContent(), Picture.class);
+			
+			System.out.println(parseArray.get(0).toString());
+			
+			model.addAttribute("pictures", parseArray);
+		}
+		
+		model.addAttribute("blog", article);
+		
+		
+		//---------------右侧放10条热门文章---------------------
+		Article lastArticlesConditions = new Article();
+		lastArticlesConditions.setDeleted(false);
+		lastArticlesConditions.setStatus(1);
+		lastArticlesConditions.setHot(true);
+		
+		Page lastArticlesPage = new Page(1, 10);
+		lastArticlesPage.setTotalCount(100);//设置了总记录数，可以节省统计查询，提高性能。
+		
+		List<Article> hotArticles = articleService.gets(lastArticlesConditions, lastArticlesPage, null);
+		model.addAttribute("hotArticles", hotArticles);
+		
 		model.addAttribute("blog", article);
 		return "blog";
 	}
