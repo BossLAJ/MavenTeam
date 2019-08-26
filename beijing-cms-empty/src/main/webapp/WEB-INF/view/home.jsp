@@ -115,7 +115,7 @@
 					</c:when>
 					<c:otherwise>
 						  <div>
-						    <h3><a class="article_title" href="/blog/${article.id}">${article.title }</a></h3>
+						    <h3><a class="article_title" href="/article?id=${article.id}">${article.title }</a></h3>
 						    <p>${article.summary}</p>
 						    <p class="blog_item_footer">
 						    	<span class="glyphicon glyphicon-user" title="作者"></span>作者：${article.author.nickname}&nbsp;&nbsp;&nbsp;
@@ -140,7 +140,18 @@
 						</ol>
 					</div>
 				</div>
+				<div class="card">
+					<div class="card-header">最新投票信息</div>
+					<div class="card-body">
+						<ol>
+							<c:forEach items="${voteArticles}" var="article">
+							<li class="text-truncate"><a href="/article?id=${article.id}">${article.title}</a></li>
+							</c:forEach>
+						</ol>
+					</div>
+				</div> 
 			</div>
+			
 		</div>
 	</div>
 	

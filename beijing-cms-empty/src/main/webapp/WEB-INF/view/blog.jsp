@@ -46,7 +46,6 @@
 				<div class="text-center">
 					作者：${blog.author.nickname}&nbsp;&nbsp;&nbsp;&nbsp;
 					浏览：${blog.hits}&nbsp;&nbsp;&nbsp;&nbsp;
-					关键字：${blog.keywords}&nbsp;&nbsp;&nbsp;&nbsp;
  					<input type="hidden" id="articleId" value="${blog.id }"
 					<!--btn-success  -->
 					 <a id="mir" class="btn btn-success" href="javascript:void(0)" style="color:#000;">
@@ -54,9 +53,12 @@
     				 </a>
 				</div>
 				<div class="text-center">
+					浏览：${blog.keywords}&nbsp;&nbsp;&nbsp;&nbsp;
+				</div>
+				<div class="text-center">
 					原文链接:
 					 <a id="mir" class="btn btn-success" href="${blog.orglink }" style="color:#000;">
-					 	${blog.orglink }
+					 	浏览：${blog.orglink}&nbsp;&nbsp;&nbsp;&nbsp;
     				 </a>
 				</div>
 				<hr/>

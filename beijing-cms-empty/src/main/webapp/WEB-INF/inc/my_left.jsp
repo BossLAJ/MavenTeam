@@ -12,5 +12,6 @@
 	  <a href="/my/comments" class="list-group-item ${param.module eq 'comments' ? 'active' : ''}">我的评论</a>
 	  <a href="/my/profile/avatar" class="list-group-item ${param.module eq 'avatar' ? 'active' : ''}">上传头像</a>
 	  <a href="/my/profile/Info" class="list-group-item ${param.module eq 'profile' ? 'active' : ''}">个人设置</a>
+	  <a href="/my/vote/edit" class="list-group-item ${param.module eq 'vote' ? 'active' : ''}">发布投票</a>
 	</div>
 </div>
