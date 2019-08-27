@@ -12,11 +12,9 @@ import java.util.Set;
 import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import javax.swing.text.html.Option;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -223,7 +221,6 @@ public class HomeController {
 		}
 		
 		
-		
 		//根据ID进行文章查询
 		Article article = articleService.selectByPrimaryKey(id);
 		model.addAttribute("blog", article);
@@ -233,50 +230,50 @@ public class HomeController {
 			System.out.println(parseArray.get(0).toString());
 			model.addAttribute("pictures", parseArray);
 		}
-		
-		
-		
-		
 		//---------------投票类型的文章---------------------
 		if(article.getArticletype() == 2) {
-			User user = (User) request.getSession().getAttribute(Constant.LOGIN_USER);//获取当前登录用户
+			User user = (User) request.getSession().getAttribute(Constant.LOGIN_USER);			
 			Vote vote = new Vote();
-			vote.setArticle(new Article(id));//传入id
-			vote.setUser(user);//设置当前用户
-			int count = voteService.selectByBUId(vote);//根据传入的id进行查询
-			System.out.println(count);
-			//判断是否投过票
-			if(count != 0) {
-				//已经进行过投票
+			vote.setArticle(new Article(id));
+			//设置当前用户
+			vote.setUser(user);
+			//判断
+			int count = voteService.selectByBUId(vote);
+			//判断count
+			if(count !=0) {
+				//已经判断过了
 				Vote vote2 = new Vote();
 				vote2.setArticle(new Article(id));
-				int sum = voteService.selectByBUId(vote2);//投票总人数
-				
+				int sum = voteService.selectByBUId(vote2);
+				//放入作用域
 				model.addAttribute("sum", sum);
-				//统计各个选项投票人数
+				
+				//集合
 				List<Map<String, Long>> resultList = voteService.countByOption(id);
-				//选项类型集合
 				ArrayList<OptionX> optionXList = new ArrayList<OptionX>();
-				//map遍历结果类型
-				for (Map<String, Long> map : resultList) {
+				//遍历
+				for(Map<String, Long> map :resultList) {
 					Set<String> keySet = map.keySet();
 					OptionX optionX = new OptionX();
-					for (String key : keySet) {
-						if(key.equals("optResult")){
+					//遍历
+					for(String key : keySet) {
+						//判断键值对
+						if(key.equals("optResult")) {
 							optionX.setOption(String.valueOf(map.get(key)));
 						}
-						if(key.equals("count(id)")){
+						if(key.equals("count(id)")) {
 							optionX.setCount(map.get(key));
 						}
 					}
+					//加入选项集合
 					optionXList.add(optionX);
-				}		
+				}
+				//加入作用域
 				model.addAttribute("optionXList", optionXList);
-				
 				return "voteResult";
-			}else{
-				List<OptionX> optionArray = JSONArray.parseArray(article.getContent(), OptionX.class);			
-				model.addAttribute("optionArray", optionArray);
+			}else {
+				List<OptionX> parseArray = JSONArray.parseArray(article.getContent(),OptionX.class);
+				model.addAttribute("parseArray", parseArray);
 				return "vote";
 			}
 		}
