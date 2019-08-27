@@ -212,13 +212,8 @@ public class HomeController {
 		
 		//---------------登录用户访问文章，阅读量只会添加一次---------------------
 		//调用cookie.每一个用户访问只能增加一次访问量
-		Cookie[] cookies = request.getCookies();
 		//判断对象是否在集合中
 		//第一个cookies对象
-		if(!hashset.contains(cookies[0].getValue())) {
-			hashset.add(cookies[0].getValue());
-			articleService.increasehit(id);
-		}
 		
 		
 		//根据ID进行文章查询
@@ -231,52 +226,7 @@ public class HomeController {
 			model.addAttribute("pictures", parseArray);
 		}
 		//---------------投票类型的文章---------------------
-		if(article.getArticletype() == 2) {
-			User user = (User) request.getSession().getAttribute(Constant.LOGIN_USER);			
-			Vote vote = new Vote();
-			vote.setArticle(new Article(id));
-			//设置当前用户
-			vote.setUser(user);
-			//判断
-			int count = voteService.selectByBUId(vote);
-			//判断count
-			if(count !=0) {
-				//已经判断过了
-				Vote vote2 = new Vote();
-				vote2.setArticle(new Article(id));
-				int sum = voteService.selectByBUId(vote2);
-				//放入作用域
-				model.addAttribute("sum", sum);
-				
-				//集合
-				List<Map<String, Long>> resultList = voteService.countByOption(id);
-				ArrayList<OptionX> optionXList = new ArrayList<OptionX>();
-				//遍历
-				for(Map<String, Long> map :resultList) {
-					Set<String> keySet = map.keySet();
-					OptionX optionX = new OptionX();
-					//遍历
-					for(String key : keySet) {
-						//判断键值对
-						if(key.equals("optResult")) {
-							optionX.setOption(String.valueOf(map.get(key)));
-						}
-						if(key.equals("count(id)")) {
-							optionX.setCount(map.get(key));
-						}
-					}
-					//加入选项集合
-					optionXList.add(optionX);
-				}
-				//加入作用域
-				model.addAttribute("optionXList", optionXList);
-				return "voteResult";
-			}else {
-				List<OptionX> parseArray = JSONArray.parseArray(article.getContent(),OptionX.class);
-				model.addAttribute("parseArray", parseArray);
-				return "vote";
-			}
-		}
+		
 		return "blog";
 	}
 }

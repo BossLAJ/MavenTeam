@@ -53,10 +53,11 @@
     				 </a>
 				</div>
 				<div class="text-center">
-					浏览：${blog.keywords}&nbsp;&nbsp;&nbsp;&nbsp;
+				
+					${blog.keywords}&nbsp;&nbsp;&nbsp;&nbsp;
 				</div>
 				<div class="text-center">
-					原文链接:
+				
 					 <a id="mir" class="btn btn-success" href="${blog.orglink }" style="color:#000;">
 					 	浏览：${blog.orglink}&nbsp;&nbsp;&nbsp;&nbsp;
     				 </a>

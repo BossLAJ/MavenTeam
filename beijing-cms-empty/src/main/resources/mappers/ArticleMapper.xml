@@ -25,8 +25,6 @@
     <result column="category_id" property="category.id" jdbcType="INTEGER"/>
     <result column="category_name" property="category.name" jdbcType="VARCHAR"/>
     
-    <result column="keywords" property="keywords" jdbcType="VARCHAR"/>
-    <result column="orglink" property="orglink" jdbcType="VARCHAR"/>
     <result column="articletype" property="articletype" jdbcType="INTEGER"/>
     <!-- 多对一查询自动映射实体 
     <association property="channel">

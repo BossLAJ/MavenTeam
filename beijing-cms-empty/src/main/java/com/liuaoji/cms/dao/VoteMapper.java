@@ -12,5 +12,4 @@ public interface VoteMapper {
 	int selectByBUid(Vote vote);
 
 	List<Map<String, Long>> countByOption(Integer id);
-
 }

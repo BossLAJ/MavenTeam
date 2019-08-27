@@ -65,11 +65,7 @@ public class Article implements Serializable {
 	/**更新时间**/
 	private Date updated;
 	
-	//关键字
-	private String keywords;
-	
-	//原文链接
-	private String orglink;
+
 	
 	private Integer articletype;
 	//---------------------------------------------------------------------
@@ -87,21 +83,6 @@ public class Article implements Serializable {
 		this.articletype = articletype;
 	}
 
-	public String getKeywords() {
-		return keywords;
-	}
-
-	public void setKeywords(String keywords) {
-		this.keywords = keywords;
-	}
-
-	public String getOrglink() {
-		return orglink;
-	}
-
-	public void setOrglink(String orglink) {
-		this.orglink = orglink;
-	}
 
 	public Article(Integer id) {
 		super();
